@@ -12,6 +12,7 @@ const questions = () => {
             type: 'input',
             name: 'title',
             message: 'What is the name of your project?',
+            // prompt to require input
             validate: answerInput => {
                 if (answerInput) {
                     return true;
@@ -25,6 +26,7 @@ const questions = () => {
             type: 'input',
             name: 'description',
             message: 'Write a short description of your project.',
+            // prompt to require input
             validate: answerInput => {
                 if (answerInput) {
                     return true;
@@ -38,6 +40,7 @@ const questions = () => {
             type: 'input',
             name: 'usage',
             message: 'How do you use this app?',
+            // prompt to require input
             validate: answerInput => {
                 if (answerInput) {
                     return true;
@@ -53,6 +56,7 @@ const questions = () => {
             message: 'What license would you like to use?',
             choices: ['Mit', 'GPLv2', 'Apache', 'Other'],
             default: ['MIT'],
+            // prompt to require input
             validate: answerInput => {
                 if (answerInput) {
                     return true;
@@ -78,6 +82,7 @@ const questions = () => {
             type: 'input',
             name: 'github',
             message: 'What is your GitHub username?',
+            // prompt to require input
             validate: answerInput => {
                 if (answerInput) {
                     return true;
@@ -91,6 +96,7 @@ const questions = () => {
             type: 'input',
             name: 'email',
             message: 'What is your email address?',
+            // prompt to require input
             validate: answerInput => {
                 if (answerInput) {
                     return true;
@@ -102,11 +108,39 @@ const questions = () => {
 ]);
 };
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// function to write README file
+const writeToFile = data => {
+fs.writeToFile('README.md', data, err => {
+    // if error exist
+    if (err) {
+        console.log(err);
+        return;
+    // if README is succesfully created
+    } else {
+        console.log('Success! Your README has been created.')
+    }
+}) 
+};
 
-// TODO: Create a function to initialize app
-function init() {}
+// 
+questions()
+//
+.then(answers => {
+    return generateReadMe(answers);
+})
 
-// Function call to initialize app
-init();
+//
+.then(data => {
+    return writeToFile(data);
+})
+
+//
+.catch(err => {
+    console.log(err)
+})
+
+// // TODO: Create a function to initialize app
+// function init() {}
+
+// // Function call to initialize app
+// init();
