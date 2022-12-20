@@ -10,104 +10,92 @@ const questions = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'Title';
-            message: 'What is your project title?';
+            name: 'title',
+            message: 'What is the name of your project?',
             validate: answerInput => {
                 if (answerInput) {
                     return true;
                 } else {
-                    console.log('Please enter a project title!')
+                    console.log('Please enter a project name.')
                 }
             }
         },
 
         {
             type: 'input',
-            name: '';
-            message: '';
+            name: 'description',
+            message: 'Write a short description of your project.',
             validate: answerInput => {
                 if (answerInput) {
                     return true;
                 } else {
-                    console.log('Please enter !')
+                    console.log('Please enter a description of your project.')
                 }
             }
         },
 
         {
             type: 'input',
-            name: '';
-            message: '';
+            name: 'usage',
+            message: 'How do you use this app?',
             validate: answerInput => {
                 if (answerInput) {
                     return true;
                 } else {
-                    console.log('Please enter !')
+                    console.log('Please enter a usage description.')
+                }
+            }
+        },
+
+        {
+            type: 'list',
+            name: 'license',
+            message: 'What license would you like to use?',
+            choices: ['Mit', 'GPLv2', 'Apache', 'Other'],
+            default: ['MIT'],
+            validate: answerInput => {
+                if (answerInput) {
+                    return true;
+                } else {
+                    console.log('Please choose a license.')
                 }
             }
         },
 
         {
             type: 'input',
-            name: '';
-            message: '';
+            name: 'contribution guidelines',
+            message: 'If applicable, what should the user know about contributing to this repository?',
+        },
+
+        {
+            type: 'input',
+            name: 'tests',
+            message: 'If applicable, please provide any tests for your app and describe how to run them.',
+        },
+
+        {
+            type: 'input',
+            name: 'github',
+            message: 'What is your GitHub username?',
             validate: answerInput => {
                 if (answerInput) {
                     return true;
                 } else {
-                    console.log('Please enter !')
+                    console.log('Please enter your GitHub username.')
                 }
             }
         },
 
         {
             type: 'input',
-            name: '';
-            message: '';
+            name: 'email',
+            message: 'What is your email address?',
             validate: answerInput => {
                 if (answerInput) {
                     return true;
                 } else {
-                    console.log('Please enter !')
-                }
-            }
-        },
-
-        {
-            type: 'input',
-            name: '';
-            message: '';
-            validate: answerInput => {
-                if (answerInput) {
-                    return true;
-                } else {
-                    console.log('Please enter !')
-                }
-            }
-        },
-
-        {
-            type: 'input',
-            name: '';
-            message: '';
-            validate: answerInput => {
-                if (answerInput) {
-                    return true;
-                } else {
-                    console.log('Please enter !')
-                }
-            }
-        },
-
-        {
-            type: 'input',
-            name: '';
-            message: '';
-            validate: answerInput => {
-                if (answerInput) {
-                    return true;
-                } else {
-                    console.log('Please enter !')
+                    console.log('Please enter your email address.')
                 }
             }
         },
