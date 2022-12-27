@@ -1,5 +1,5 @@
 // node modules
-const inquirer = require('inquirer.');
+const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
 
@@ -60,6 +60,7 @@ const questions = () =>
         },
     ]);
 
+// function to generate readme    
 function generateMarkdown(data) {
 
     return `# ${data.title}
@@ -85,10 +86,13 @@ function generateMarkdown(data) {
         ### Questions
         If you have any questions contact me on [Github](https://github.com/${data.github}), or contact ${data.author} at ${data.email}
         `
-}
+};
 
+//
 questions()
 .then((data) => writeFileAsync('generatedREADME.md',
 generateMarkdown(data)))
 .then(() => console.log('Success!'))
 .catch((err) => console.error(err));
+
+init();
