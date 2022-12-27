@@ -1,146 +1,94 @@
 // node modules
-const inquirer = require('inquirer');
+const inquirer = require('inquirer.');
 const fs = require('fs');
+const util = require('util');
 
-// link to where README is generated
-const generateReadMe = require('./utils/generateMarkdown.js');
+const writeFileAsync = util.promisify(fs.writeFile);
 
-// questions array
-const questions = () => {
-    return inquirer.prompt([
+// questions array 
+const questions = () =>
+    inquirer.prompt([
         {
-            type: 'input',
-            name: 'title',
-            message: 'What is the name of your project?',
-            // prompt to require input
-            validate: answerInput => {
-                if (answerInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a project name.')
-                }
-            }
+            name: "input",
+            name: "title",
+            message: "What is the title of your project?",
         },
-
         {
-            type: 'input',
-            name: 'description',
-            message: 'Write a short description of your project.',
-            // prompt to require input
-            validate: answerInput => {
-                if (answerInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a description of your project.')
-                }
-            }
+            name: "input",
+            name: "description",
+            message: "Please write a short description of your project.",
         },
-
         {
-            type: 'input',
-            name: 'usage',
-            message: 'How do you use this app?',
-            // prompt to require input
-            validate: answerInput => {
-                if (answerInput) {
-                    return true;
-                } else {
-                    console.log('Please enter a usage description.')
-                }
-            }
+            name: "input",
+            name: "license",
+            message: "What type of liscense does your project use?",
+            choices: ["MIT", "Apache", "GPL", "BSD", "None"],
         },
-
         {
-            type: 'list',
-            name: 'license',
-            message: 'What license would you like to use?',
-            choices: ['Mit', 'GPLv2', 'Apache', 'Other'],
-            default: ['MIT'],
-            // prompt to require input
-            validate: answerInput => {
-                if (answerInput) {
-                    return true;
-                } else {
-                    console.log('Please choose a license.')
-                }
-            }
+            name: "input",
+            name: "installation",
+            message: "What command should be run to install dependencies?",
         },
-
         {
-            type: 'input',
-            name: 'contribution guidelines',
-            message: 'If applicable, what should the user know about contributing to this repository?',
+            name: "input",
+            name: "tests",
+            message: "What command shoud be run to run tests?",
         },
-
         {
-            type: 'input',
-            name: 'tests',
-            message: 'If applicable, please provide any tests for your app and describe how to run them.',
+            name: "input",
+            name: "usage",
+            message: "What does the user need to know about using the repo?",
         },
-
         {
-            type: 'input',
-            name: 'github',
-            message: 'What is your GitHub username?',
-            // prompt to require input
-            validate: answerInput => {
-                if (answerInput) {
-                    return true;
-                } else {
-                    console.log('Please enter your GitHub username.')
-                }
-            }
+            name: "input",
+            name: "contribute",
+            message: "What does the user need to know about contributing to the repo?",
         },
-
         {
-            type: 'input',
-            name: 'email',
-            message: 'What is your email address?',
-            // prompt to require input
-            validate: answerInput => {
-                if (answerInput) {
-                    return true;
-                } else {
-                    console.log('Please enter your email address.')
-                }
-            }
+            name: "input",
+            name: "email",
+            message: "What is your email?",
+        }, {
+            name: "input",
+            name: "github",
+            message: "What is your guthub username?",
         },
-]);
-};
+        {
+            name: "input",
+            name: "author",
+            message: "What is your name?",
+        },
+    ]);
 
-// function to write README file
-const writeToFile = data => {
-fs.writeToFile('README.md', data, err => {
-    // if error exist
-    if (err) {
-        console.log(err);
-        return;
-    // if README is succesfully created
-    } else {
-        console.log('Success! Your README has been created.')
-    }
-}) 
-};
+function generateMarkdown(data) {
 
-// 
+    return `# ${data.title}
+        ${badge}
+        ${data.description}
+        ## Table of Contents:
+        * [Installation](#installation)
+        * [Usage](#usage)
+        * [License](#license)
+        * [Contributing](#contributing)
+        * [Tests](#tests)
+        * [Questions](#questions)
+        ### Installion:
+        ${data.installations}
+        ### Usage:
+        ${data.usage}
+        ### License
+        ${data.license}
+        ### Contributing
+        ${data.contributing}
+        ### Tests
+        ${data.tests}
+        ### Questions
+        If you have any questions contact me on [Github](https://github.com/${data.github}), or contact ${data.author} at ${data.email}
+        `
+}
+
 questions()
-//
-.then(answers => {
-    return generateReadMe(answers);
-})
-
-//
-.then(data => {
-    return writeToFile(data);
-})
-
-//
-.catch(err => {
-    console.log(err)
-})
-
-// // TODO: Create a function to initialize app
-// function init() {}
-
-// // Function call to initialize app
-// init();
+.then((data) => writeFileAsync('generatedREADME.md',
+generateMarkdown(data)))
+.then(() => console.log('Success!'))
+.catch((err) => console.error(err));
