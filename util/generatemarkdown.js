@@ -54,6 +54,7 @@ function generateMarkdown(data) {
   
   return `# ${data.title}
 ${licenseBadge}
+## Description:
 ${data.description}
 ## Table of Contents:
 * [Installation](#installation)
