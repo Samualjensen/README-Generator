@@ -64,7 +64,7 @@ ${data.description}
 * [Tests](#tests)
 * [Questions](#questions)
 ### Installation:
-${data.installations}
+${data.installation}
 ### Usage:
 ${data.usage}
 ### License

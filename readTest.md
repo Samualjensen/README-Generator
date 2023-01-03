@@ -1,7 +1,7 @@
 # README Generator 
 ![License Badge](https://shields.io/badge/license-MIT-green)
 ## Description:
-A repository to creat a README through the terminal using node.
+A repository to creat a README through the termiinal using node.
 ## Table of Contents:
 * [Installation](#installation)
 * [Usage](#usage)
