@@ -1,98 +1,71 @@
 // node modules
 const inquirer = require('inquirer');
 const fs = require('fs');
-const util = require('util');
 
-const writeFileAsync = util.promisify(fs.writeFile);
+// 
+const generateMarkdown = require('./util/generatemarkdown')
 
 // questions array 
-const questions = () =>
-    inquirer.prompt([
+inquirer.prompt([
         {
-            name: "input",
+            type: "input",
             name: "title",
             message: "What is the title of your project?",
         },
         {
-            name: "input",
+            type: "input",
             name: "description",
             message: "Please write a short description of your project.",
         },
         {
-            name: "input",
+            type: "list",
             name: "license",
             message: "What type of liscense does your project use?",
-            choices: ["MIT", "Apache", "GPL", "BSD", "None"],
+            choices: ["MIT", "Apache", "GPL", "None"],
         },
         {
-            name: "input",
+            type: "input",
             name: "installation",
             message: "What command should be run to install dependencies?",
         },
         {
-            name: "input",
+            type: "input",
             name: "tests",
             message: "What command shoud be run to run tests?",
         },
         {
-            name: "input",
+            type: "input",
             name: "usage",
             message: "What does the user need to know about using the repo?",
         },
         {
-            name: "input",
+            type: "input",
             name: "contribute",
             message: "What does the user need to know about contributing to the repo?",
         },
         {
-            name: "input",
+            type: "input",
             name: "email",
             message: "What is your email?",
         }, {
-            name: "input",
+            type: "input",
             name: "github",
             message: "What is your guthub username?",
         },
         {
-            name: "input",
+            type: "input",
             name: "author",
             message: "What is your name?",
         },
-    ]);
+])
 
-// function to generate readme    
-function generateMarkdown(data) {
+        .then((answers) => {
+            const htmlPageContent = generateMarkdown(answers);
 
-    return `# ${data.title}
-        ${badge}
-        ${data.description}
-        ## Table of Contents:
-        * [Installation](#installation)
-        * [Usage](#usage)
-        * [License](#license)
-        * [Contributing](#contributing)
-        * [Tests](#tests)
-        * [Questions](#questions)
-        ### Installion:
-        ${data.installations}
-        ### Usage:
-        ${data.usage}
-        ### License
-        ${data.license}
-        ### Contributing
-        ${data.contributing}
-        ### Tests
-        ${data.tests}
-        ### Questions
-        If you have any questions contact me on [Github](https://github.com/${data.github}), or contact ${data.author} at ${data.email}
-        `
-};
+            fs.writeFile('README.md', htmlPageContent, (err) =>
+                err ? console.log(err) : console.log('Successfully created README!')
+            );
+        });
 
-//
-questions()
-.then((data) => writeFileAsync('generatedREADME.md',
-generateMarkdown(data)))
-.then(() => console.log('Success!'))
-.catch((err) => console.error(err));
 
-init();
+
