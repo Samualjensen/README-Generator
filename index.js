@@ -40,7 +40,7 @@ inquirer.prompt([
         },
         {
             type: "input",
-            name: "contribute",
+            name: "contributing",
             message: "What does the user need to know about contributing to the repo?",
         },
         {
@@ -50,7 +50,7 @@ inquirer.prompt([
         }, {
             type: "input",
             name: "github",
-            message: "What is your guthub username?",
+            message: "What is your github username?",
         },
         {
             type: "input",
