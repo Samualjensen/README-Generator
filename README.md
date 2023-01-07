@@ -13,6 +13,8 @@ Create a professional README using node.js.
 none.
 ### Usage:
 git clone https://github.com/Samualjensen/README-Generator.git
+
+https://user-images.githubusercontent.com/115045713/211170039-e17ab6cf-8b5a-4b52-bd89-65b48a18e09d.mp4
 ### License
 MIT
 ### Contributing
