@@ -1,4 +1,4 @@
-// If there is no license, return an empty string
+// if there is no license returns a placeholder badge
 function renderLicenseBadge(license) {
   const licenseLink = renderLicenseLink(license)
   const licenseSection = renderLicenseSection(license)
@@ -11,7 +11,7 @@ function renderLicenseBadge(license) {
   return badge;
 }
 
-// If there is no license, return an empty string
+// generates badges based on which license is selected
 function renderLicenseLink(license) {
   let licenseLink;
 
@@ -32,8 +32,7 @@ function renderLicenseLink(license) {
   return licenseLink;
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// if there is no license, return an empty string
 function renderLicenseSection(license) { 
   let licenseSection = "";
 
@@ -74,8 +73,8 @@ ${data.contributing}
 ### Tests
 ${data.tests}
 ### Questions
-If you have any questions contact me on [Github](https://github.com/${data.github}), or contact ${data.author} at ${data.email}
+My Github profile can be found at [Github](https://github.com/${data.github}), or contact ${data.author} at ${data.email}.
 `
-};
+}
 
 module.exports = generateMarkdown;

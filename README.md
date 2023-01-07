@@ -1,7 +1,7 @@
-# README Generator 
+# README Genorator
 ![License Badge](https://shields.io/badge/license-MIT-green)
 ## Description:
-A repository to creat a README through the terminal using node.
+Write a professional README using node.js.
 ## Table of Contents:
 * [Installation](#installation)
 * [Usage](#usage)
@@ -10,14 +10,14 @@ A repository to creat a README through the terminal using node.
 * [Tests](#tests)
 * [Questions](#questions)
 ### Installation:
-npm intall
+npm intstall
 ### Usage:
-n/a
+git clone https://github.com/Samualjensen/README-Generator.git
 ### License
 MIT
 ### Contributing
 undefined
 ### Tests
-n/z
+None.
 ### Questions
-If you have any questions contact me on [Github](https://github.com/Samualjensen), or contact Sam Jensen at samual.jensen@gmail.com
+My Github profile can be found at [Github](https://github.com/Samualjensen), or contact Sam Jensen at samual.jensen@gmail.com.

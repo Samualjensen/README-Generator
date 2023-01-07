@@ -1,8 +1,8 @@
 // node modules
-const inquirer = require('inquirer');
-const fs = require('fs');
+const inquirer = require('inquirer')
+const fs = require('fs')
 
-// 
+// link to generatemarkdown.js
 const generateMarkdown = require('./util/generatemarkdown')
 
 // questions array 
@@ -59,11 +59,12 @@ inquirer.prompt([
         },
 ])
 
+// function to generate new README.md file
         .then((answers) => {
             const htmlPageContent = generateMarkdown(answers);
 
-            fs.writeFile('readmeTest.md', htmlPageContent, (err) =>
-                err ? console.log(err) : console.log('Successfully created README!')
+            fs.writeFile('README.md', htmlPageContent, (err) =>
+                err ? console.log(err) : console.log('Success! README has been created!')
             );
         });
 
